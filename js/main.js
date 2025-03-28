@@ -1,11 +1,10 @@
-var btn = document.getElementById('play');
+const btn = document.getElementById('play');
 
 function transform() {
-  const array = data.splice(5, 1);
-  console.log(array);
-
+  const dataCopy = [...data];
+  dataCopy.splice(5, 1);
   const newArray = [];
-  data.forEach(function (item) {
+  dataCopy.forEach(function (item) {
     newArray.push({
       url: item.url,
       name: item.name,
@@ -14,8 +13,6 @@ function transform() {
       date: item.date,
     });
   });
-  console.log(newArray);
-
   const newData = newArray.map(function (item) {
     return {
       url: `${'http://'}` + item.url,
@@ -26,8 +23,6 @@ function transform() {
       isVisible: item.params.status,
     };
   });
-  console.log(newData);
-
   const filter = newData.filter(status => status.isVisible);
   console.log(filter);
 }
